@@ -1,0 +1,8 @@
+<%-- // Wrap your jQuery code in a
+document ready function $(document).ready(function () { $(".list").on("click",
+".delete", function () { const $listItem = $(this).closest("li"); const id =
+$listItem.data("id"); // Remove the element from the DOM $listItem.remove();
+tasks.splice(0, tasks.length); console.log(locasl.tasks); }); }); --%>
+
+
+

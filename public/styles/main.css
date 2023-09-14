@@ -1,0 +1,328 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #fff7b2;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Nav Bar //////////////////////////////////////////////////////////////////*/
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+  width: 25%;
+  background-color: #fff;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.nav-item {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 247, 178, 0.8);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: -20px 10px 20px rgba(255, 255, 255, 0.8);
+}
+
+/* Section////////////////////////////////////////////////////////////////// */
+
+section {
+  margin-top: 30px;
+  background-color: white;
+  height: 85vh;
+  border-radius: 20px;
+  width: 20%;
+  box-shadow: 0px 20px 20px rgba(255, 255, 255, 0.8);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.full-height {
+  height: max-content;
+  margin-bottom: 3rem;
+}
+
+.active {
+  width: 45%;
+}
+
+h1 {
+  background-color: #fff7b2;
+  border-radius: 20px;
+  width: 40%;
+  margin: 10px;
+}
+
+/* Form ///////////////////////////////////////////////////////*/
+
+form {
+  width: 98%;
+  height: 2.5rem;
+  border-radius: 10px;
+  display: flex;
+}
+
+.inp {
+  min-height: 2.4rem;
+  height: 100%;
+  width: calc(100% - 4rem);
+  border: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 20px;
+  font-size: 1rem;
+  background-color: #87ceeb;
+}
+
+.inp:focus {
+  background: linear-gradient(45deg, #87ceeb, hwb(0 100% 0%));
+  background-size: 200% 200%;
+  animation: gradientSlide 4s ease-in-out infinite;
+}
+
+@keyframes gradientSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* List ///////////////////////////////////////////////////////////////////// */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: transparent;
+  width: 90%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.item {
+  min-width: 80%;
+  min-height: 3.5rem;
+  background-color: #90ee90;
+  border-radius: 10px;
+  display: flex;
+}
+
+.text {
+  width: 90%;
+  height: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn-container {
+  background-color: #fff;
+  width: 10%;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+/* Buttons ///////////////////////////////////////////////////////////////// */
+button {
+  border: none;
+}
+
+.sub-btn {
+  height: 100%;
+  min-width: 4rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: none;
+  background: #87ceeb;
+  background-blend-mode: multiply;
+}
+
+.sub-btn:active {
+  height: 90%;
+  min-width: 3rem;
+}
+
+.pencil,
+.delete {
+  background-color: #90ee90;
+}
+.pencil {
+  border-top-right-radius: 10px;
+}
+.delete {
+  border-top: 1px #fff solid;
+  border-bottom-right-radius: 10px;
+}
+
+.pencil:active,
+.delete:active {
+  width: 70%;
+}
+
+.less-btn {
+  margin-top: auto;
+  width: 20%;
+  background: #87ceeb;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+
+/* about page */
+
+.about {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.pees {
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 502px rgba(55, 3, 240, 0.8);
+}
+
+
+body:has(.about) {
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* contact */
+
+
+body:has(.contact) {
+  justify-content: center;
+  align-items: center;
+}
+
+
+.contact {
+
+  width: 50%;
+  border-top: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  justify-content: center;
+}
+
+.giff {
+  height: 70%;
+  width: 50%;
+  background-image: url('../mike-ohearn-baby-dont-hurt-me.gif');
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+
+  padding: 2rem;
+  border-radius: 50%;
+
+}
+
+
+
+@media (max-width: 1500px) {
+  .not-active {
+    width: 45%;
+  }
+}
+
+@media (max-width: 1050px) {
+  nav {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+
+  .nav-bar {
+    width: 100%;
+    justify-content: center;
+    gap: 5%;
+  }
+
+  .nav-item {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  .mid {
+    border-left: 1px gray solid;
+    border-right: 1px gray solid;
+  }
+
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  section {
+    box-shadow: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .active,
+  .not-active {
+    width: 80%;
+  }
+  .not-active {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 750px) {
+  .active,
+  .not-active,
+  .contact {
+    width: 98%;
+  }
+}
+
+

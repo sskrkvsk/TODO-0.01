@@ -1,0 +1,129 @@
+<%- include("partials/header.ejs") %>
+
+<main>
+  <section class="secD not-active active">
+    <h1>Day</h1>
+
+    <form action="/submit" method="post">
+      <input type="text" name="taskD" placeholder="New task" class="inp" />
+      <input type="submit" value="+" class="sub-btn" />
+    </form>
+
+    <ul class="list">
+      <% if ( !locals.currentValue == "" ) { %>
+      <li class="item">
+        <span class="text"><%= locals.currentValue %></span>
+        <div class="btn-container">
+          <button class="pencil">✓</button>
+          <button class="delete">x</button>
+        </div>
+      </li>
+
+      <% } if (locals.arrL >= 1) { for (let i = 0; i < tasks.length; i++) { %>
+
+      <li class="item">
+        <span class="text"><%= tasks[tasks.length - i-1]%></span>
+        <div class="btn-container">
+          <button class="pencil">✓</button>
+          <button class="delete">x</button>
+        </div>
+      </li>
+      <% } }; %>
+    </ul>
+
+    <button class="less-btn">...</button>
+  </section>
+
+  <section class="secW not-active">
+    <h1>Week</h1>
+
+    <form action="/submit" method="post">
+      <input type="text" name="taskW" placeholder="New task" class="inp" />
+      <input type="submit" value="+" class="sub-btn" />
+    </form>
+
+    <ul class="list">
+      <% if ( !locals.currentValueW == "" ) { %>
+      <li class="item">
+        <span class="text"><%= locals.currentValueW %></span>
+        <div class="btn-container">
+          <button class="pencil">✓</button>
+          <button class="delete">x</button>
+        </div>
+      </li>
+
+      <% } if (locals.arrLW >= 1) { for (let i = 0; i < tasksW.length; i++) { %>
+
+      <li class="item">
+        <span class="text"><%= tasksW[tasksW.length - i-1]%></span>
+        <div class="btn-container">
+          <button class="pencil">✓</button>
+          <button class="delete">x</button>
+        </div>
+      </li>
+      <% } }; %>
+    </ul>
+
+    <button class="less-btn">...</button>
+  </section>
+</main>
+
+<script>
+  $(document).ready(function () {
+    $(".list").on("click", ".delete", function () {
+      const $listItem = $(this).closest("li");
+      const id = $listItem.data("id");
+
+      $listItem.remove();
+    });
+
+    $(".list").on("click", ".pencil", function () {
+      const $listItem = $(this).closest("li");
+      const $span = $listItem.find(".text");
+
+      // Get the current text content of the span
+      const currentText = $span.text();
+
+      // Concatenate the modified text with the additional string
+      const newText = currentText + "☑️";
+
+      // Update the text content of the span
+      $span.text(newText);
+    });
+
+    $(".less-btn").click(function () {
+      $(this).closest("section").toggleClass("full-height");
+      $("footer").remove();
+    });
+
+    const $sectionD = $(".secD");
+    const $sectionW = $(".secW");
+
+    $($sectionD).click((event) => {
+      if ($(event.target).is("button")) {
+        event.preventDefault(); // Prevent the default button behavior
+        return;
+      }
+
+      if ($sectionD.hasClass("active")) {
+      } else {
+        $sectionD.addClass("active");
+        $sectionW.removeClass("active");
+      }
+    });
+    $($sectionW).click((event) => {
+      if ($(event.target).is("button")) {
+        event.preventDefault(); // Prevent the default button behavior
+        return;
+      }
+
+      if ($sectionW.hasClass("active")) {
+      } else {
+        $sectionW.addClass("active");
+        $sectionD.removeClass("active");
+      }
+    });
+  });
+</script>
+
+<%-include("partials/footer.ejs") %>
