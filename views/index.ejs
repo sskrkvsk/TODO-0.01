@@ -4,27 +4,22 @@
   <section class="secD not-active active">
     <h1>Day</h1>
 
-    <form action="/submit" method="post">
-      <input type="text" name="taskD" placeholder="New task" class="inp" />
-      <input type="submit" value="+" class="sub-btn" />
+    <form action="/" method="post">
+      <input type="text" name="daily" placeholder="New task" class="inp" />
+      <input type="submit" value="+" name="day" class="sub-btn" />
     </form>
 
     <ul class="list">
+      <% newListItems.forEach(function(item){ %> <% if (item.type === "daily") {
+      %>
       <li class="item">
-        <span class="text"> HELLO</span>
+        <span class="text"><%= item.name %></span>
         <div class="btn-container">
           <button class="pencil">✓</button>
           <button class="delete">x</button>
         </div>
       </li>
-
-      <li class="item">
-        <span class="text">WHATSUP</span>
-        <div class="btn-container">
-          <button class="pencil">✓</button>
-          <button class="delete">x</button>
-        </div>
-      </li>
+      <% }}) %>
     </ul>
 
     <button class="less-btn">...</button>
@@ -33,27 +28,22 @@
   <section class="secW not-active">
     <h1>Week</h1>
 
-    <form action="/submit" method="post">
-      <input type="text" name="taskW" placeholder="New task" class="inp" />
-      <input type="submit" value="+" class="sub-btn" />
+    <form action="/" method="post">
+      <input type="text" name="weekly" placeholder="New task" class="inp" />
+      <input type="submit" value="+" name="week" class="sub-btn" />
     </form>
 
     <ul class="list">
+      <% newListItems.forEach(function(item){ %> <% if (item.type === "weekly")
+      { %>
       <li class="item">
-        <span class="text">HELLO 2</span>
+        <span class="text"><%= item.name %></span>
         <div class="btn-container">
           <button class="pencil">✓</button>
           <button class="delete">x</button>
         </div>
       </li>
-
-      <li class="item">
-        <span class="text">WHATSUP 2</span>
-        <div class="btn-container">
-          <button class="pencil">✓</button>
-          <button class="delete">x</button>
-        </div>
-      </li>
+      <% }}) %>
     </ul>
 
     <button class="less-btn">...</button>

@@ -29,22 +29,40 @@ const Todo = mongoose.model("Todo", todoSchema);
 // default files
 
 const dailyTodo = new Todo({
-    name: "Day example",
+    name: "Add your daily task",
     type: "daily"
 });
 
 const weeklyTodo = new Todo({
-    name: "Week example",
+    name: "Add your weekly task",
     type: "weekly"
 });
+
+const defaultItems = [dailyTodo, weeklyTodo];
 
 
 // dailyTodo.save();
 // weeklyTodo.save();
 
-
+// GET
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    Todo.find({}).then(function(foundItems){
+
+        if (foundItems.length < 1) {
+          Item.insertMany(defaultItems).then(function (err) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("Successefully saved default items to DB");
+            }
+          });
+        } else {
+          res.render("index", { newListItems: foundItems });
+        }
+      })
+      .catch(function(err){
+        console.log(err);
+      });
 });
 
 app.get('/about', (req, res) => {
@@ -55,51 +73,49 @@ app.get('/contact', (req, res) => {
     res.render('partials/contact.ejs');
 });
 
-app.post('/submit', (req, res) => {
-    const currentValue = req.body["taskD"];
-    const currentValueW = req.body["taskW"];
+// POST
+app.post("/", function(req, res){
+  
+    const dayTask = req.body.daily;
+    const weekTask = req.body.weekly;
+    const dayBtn = req.body.day;
+    const weekBtn = req.body.week;
 
-    const lastEl = tasks[tasks.length - 1];
-    const lastElW = tasksW[tasksW.length - 1];
+    if (dayBtn) {
+        if (dayTask) {
 
-    const arrL = tasks.length;
-    const arrLW = tasksW.length;
+            const item = new Todo({
+                name: dayTask,
+                type: "daily"
+            });
 
+            item.save();
+            res.redirect("/");
 
-    res.render('index.ejs', {
+        } else {
+            console.log("Day btn error");
+            res.redirect("/");
+        }
+    }
 
-        tasks: tasks,
-        tasksW: tasksW,
+    if (weekBtn) {
+        if (weekTask) {
+            console.log(weekTask);
 
-        arrL: arrL,
-        arrLW: arrLW,
+            const item = new Todo({
+                name: weekTask,
+                type: "weekly"
+            });
 
-        lastEl: lastEl,
-        lastElW: lastElW,
+            item.save();
+            res.redirect("/");
 
-        currentValue: currentValue,
-        currentValueW: currentValueW,
-    });
-        if (currentValue !== undefined) {
-            if (currentValue.length > 0) {
-                tasks.push(currentValue);
-            }
-            else if (currentValue == lastEl) {
-            console.log("bruh");
-            return 
-            }  
-        }    
-        if (currentValueW !== undefined) {
-            if (currentValueW.length > 0) {
-                tasksW.push(currentValueW);
-            }
-            else if (currentValueW == lastElW) {
-            console.log("bruh");
-            return 
-            }  
-            
-        }   
-});
+        } else {
+            console.log("Week btn error");
+            res.redirect("/");
+        }
+    }
+  });
 
 app.listen(port, () => {
 console.log(`Server started on port ${port}`);
