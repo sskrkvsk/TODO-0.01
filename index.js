@@ -83,39 +83,59 @@ app.post("/", function(req, res){
 
     if (dayBtn) {
         if (dayTask) {
-
             const item = new Todo({
                 name: dayTask,
                 type: "daily"
             });
-
             item.save();
             res.redirect("/");
-
         } else {
             console.log("Day btn error");
             res.redirect("/");
         }
     }
-
     if (weekBtn) {
         if (weekTask) {
-            console.log(weekTask);
-
             const item = new Todo({
                 name: weekTask,
                 type: "weekly"
             });
-
             item.save();
             res.redirect("/");
-
         } else {
             console.log("Week btn error");
             res.redirect("/");
         }
     }
   });
+
+  // DELETE
+  app.post("/day-change", function (req, res) {
+
+    const penDact = req.body.penDact;
+    const delDact = req.body.delDact;
+    const id = req.body.itemName;
+    
+  
+    if (penDact) {
+        console.log("penDact okay" + penDact + id);
+    } else if (delDact) (console.log("delD ok"));
+
+  });
+
+  app.post("/week-change", function (req, res) {
+
+    const penWact = req.body.penWact;
+    const delWact = req.body.delWact;
+    const id = req.body.itemName;
+  
+    if (penWact) {
+        console.log("penwact okay" + id);
+    } else if (delWact) (console.log("delW ok" + id));
+
+
+  });
+
 
 app.listen(port, () => {
 console.log(`Server started on port ${port}`);
