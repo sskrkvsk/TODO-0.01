@@ -10,25 +10,21 @@
     </form>
 
     <ul class="list">
-      <% if ( !locals.currentValue == "" ) { %>
       <li class="item">
-        <span class="text"><%= locals.currentValue %></span>
+        <span class="text"> HELLO</span>
         <div class="btn-container">
           <button class="pencil">✓</button>
           <button class="delete">x</button>
         </div>
       </li>
 
-      <% } if (locals.arrL >= 1) { for (let i = 0; i < tasks.length; i++) { %>
-
       <li class="item">
-        <span class="text"><%= tasks[tasks.length - i-1]%></span>
+        <span class="text">WHATSUP</span>
         <div class="btn-container">
           <button class="pencil">✓</button>
           <button class="delete">x</button>
         </div>
       </li>
-      <% } }; %>
     </ul>
 
     <button class="less-btn">...</button>
@@ -43,25 +39,21 @@
     </form>
 
     <ul class="list">
-      <% if ( !locals.currentValueW == "" ) { %>
       <li class="item">
-        <span class="text"><%= locals.currentValueW %></span>
+        <span class="text">HELLO 2</span>
         <div class="btn-container">
           <button class="pencil">✓</button>
           <button class="delete">x</button>
         </div>
       </li>
 
-      <% } if (locals.arrLW >= 1) { for (let i = 0; i < tasksW.length; i++) { %>
-
       <li class="item">
-        <span class="text"><%= tasksW[tasksW.length - i-1]%></span>
+        <span class="text">WHATSUP 2</span>
         <div class="btn-container">
           <button class="pencil">✓</button>
           <button class="delete">x</button>
         </div>
       </li>
-      <% } }; %>
     </ul>
 
     <button class="less-btn">...</button>
@@ -70,27 +62,6 @@
 
 <script>
   $(document).ready(function () {
-    $(".list").on("click", ".delete", function () {
-      const $listItem = $(this).closest("li");
-      const id = $listItem.data("id");
-
-      $listItem.remove();
-    });
-
-    $(".list").on("click", ".pencil", function () {
-      const $listItem = $(this).closest("li");
-      const $span = $listItem.find(".text");
-
-      // Get the current text content of the span
-      const currentText = $span.text();
-
-      // Concatenate the modified text with the additional string
-      const newText = currentText + "☑️";
-
-      // Update the text content of the span
-      $span.text(newText);
-    });
-
     $(".less-btn").click(function () {
       $(this).closest("section").toggleClass("full-height");
       $("footer").remove();
