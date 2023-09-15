@@ -57,6 +57,10 @@
       $("footer").remove();
     });
 
+    $(".pencil").click(function () {
+      $(this).closest(".item").toggleClass("pencil-item");
+    });
+
     const $sectionD = $(".secD");
     const $sectionW = $(".secW");
 
