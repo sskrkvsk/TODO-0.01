@@ -3,15 +3,44 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import _ from "lodash";
 
+// express set up
 const app = express();
+app.set('view engine', 'ejs');
 const port = 3000;
-
-const tasks = [];
-const tasksW = [];
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+// mongoose set up
+mongoose.connect('mongodb://127.0.0.1:27017/DoToDB');
+
+const todoSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true]
+    },
+    type: {
+        type: String,
+        enum: ["daily", "weekly"],
+        required: [true]
+    }
+});
+const Todo = mongoose.model("Todo", todoSchema);
+
+// default files
+
+const dailyTodo = new Todo({
+    name: "Day example",
+    type: "daily"
+});
+
+const weeklyTodo = new Todo({
+    name: "Week example",
+    type: "weekly"
+});
+
+
+// dailyTodo.save();
+// weeklyTodo.save();
 
 
 app.get('/', (req, res) => {
@@ -74,6 +103,5 @@ app.post('/submit', (req, res) => {
 
 app.listen(port, () => {
 console.log(`Server started on port ${port}`);
-// Starting a server
 });
 
