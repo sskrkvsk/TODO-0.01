@@ -109,8 +109,8 @@ app.post("/", function(req, res){
     }
   });
 
-  // DELETE
-  app.post("/day-change", function (req, res) {
+  // DAY CHANGE
+  app.post("/day-change", async function (req, res) {
 
     const penDact = req.body.penDact;
     const delDact = req.body.delDact;
@@ -118,12 +118,21 @@ app.post("/", function(req, res){
     
   
     if (penDact) {
+      
         console.log("penDact okay" + penDact + id);
-    } else if (delDact) (console.log("delD ok"));
+    } else if (delDact) {
+      try {
+        await Todo.findByIdAndDelete(id);
+        res.redirect("/");
+      } catch (error) {
+        console.error(`Error deleting document: ${error}`);
+      }
+    };
 
   });
 
-  app.post("/week-change", function (req, res) {
+  // WEEK CHANGE
+  app.post("/week-change", async function (req, res) {
 
     const penWact = req.body.penWact;
     const delWact = req.body.delWact;
@@ -131,7 +140,14 @@ app.post("/", function(req, res){
   
     if (penWact) {
         console.log("penwact okay" + id);
-    } else if (delWact) (console.log("delW ok" + id));
+    } else if (delWact) {
+      try {
+        await Todo.findByIdAndDelete(id);
+        res.redirect("/");
+      } catch (error) {
+        console.error(`Error deleting document: ${error}`);
+      }
+    };
 
 
   });

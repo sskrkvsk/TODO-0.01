@@ -2,7 +2,7 @@
 
 <main>
   <section class="secD not-active active">
-    <h1>Day</h1>
+    <h1 class="dayH">Day</h1>
 
     <form action="/" method="post" class="not-del">
       <input type="text" name="daily" placeholder="New task" class="inp" />
@@ -18,6 +18,7 @@
         <form action="/day-change" method="post" class="btn-container">
           <input type="submit" name="penDact" class="pencil" value="✓"></input>
           <input type="submit" name="delDact" class="delete" value="x"></input>
+          <input type="hidden" name="itemName" value= <%= item.id %> />
         </form>
       </li>
       <% }}) %>
@@ -27,7 +28,7 @@
   </section>
 
   <section class="secW not-active">
-    <h1>Week</h1>
+    <h1 class="weekH">Week</h1>
 
     <form action="/" method="post" class="not-del">
       <input type="text" name="weekly" placeholder="New task" class="inp" />
@@ -63,17 +64,19 @@
       $(this).closest(".item").toggleClass("pencil-item");
     });
 
+
     const $sectionD = $(".secD");
     const $sectionW = $(".secW");
 
-    $($sectionD).click((event) => {
+    $(".dayH").click((event) => {
       if ($sectionD.hasClass("active")) {
       } else {
         $sectionD.addClass("active");
         $sectionW.removeClass("active");
       }
     });
-    $($sectionW).click((event) => {
+    $(".weekH").click((event) => {
+
       if ($sectionW.hasClass("active")) {
       } else {
         $sectionW.addClass("active");
