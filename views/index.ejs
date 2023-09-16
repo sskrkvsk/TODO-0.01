@@ -60,9 +60,11 @@
       $("footer").remove();
     });
 
-    $(".pencil").click(function () {
+    $(".pencil").click(function (event) {
       $(this).closest(".item").toggleClass("pencil-item");
+      event.preventDefault();
     });
+
 
 
     const $sectionD = $(".secD");
