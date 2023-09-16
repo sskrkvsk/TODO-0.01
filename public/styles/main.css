@@ -25,6 +25,10 @@ main {
   justify-content: space-around;
 }
 
+input {
+  border: none;
+}
+
 footer {
   text-align: center;
   padding: 10px;
@@ -95,11 +99,6 @@ h1 {
 
 /* Form ///////////////////////////////////////////////////////*/
 
-form {
-  padding: 0;
-  margin: 0;
-}
-
 form.not-del {
   width: 98%;
   height: 2.5rem;
@@ -165,6 +164,7 @@ form.not-del {
   padding-bottom: 10px;
 }
 .btn-container {
+  border: none;
   background-color: #fff;
   width: 10%;
   border-radius: 10px;

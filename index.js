@@ -118,8 +118,8 @@ app.post("/", function(req, res){
     
   
     if (penDact) {
-      
-        console.log("penDact okay" + penDact + id);
+      // might be another functionality. but I kinda like it more this simple way
+        // console.log("penDact okay" + id);
     } else if (delDact) {
       try {
         await Todo.findByIdAndDelete(id);
