@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // mongoose set up
-mongoose.connect('mongodb://127.0.0.1:27017/DoToDB');
+mongoose.connect('mongodb+srv://admin-ssk:e47W66@cluster0.lmjygxq.mongodb.net/DoToDB');
 
 const todoSchema = new mongoose.Schema({
     name: {
@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
     Todo.find({}).then(function(foundItems){
 
         if (foundItems.length < 1) {
-          Item.insertMany(defaultItems).then(function (err) {
+          Todo.insertMany(defaultItems).then(function (err) {
             if (err) {
               console.log(err);
             } else {
